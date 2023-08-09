@@ -33,3 +33,12 @@ def test_unauthorized() -> str:
       - the number o
     """
     return abort(401)
+
+
+@app_views.route('/forbidden/', strict_slashes=False)
+def test_forbidden() -> str:
+    """ GET /api/v1/forbidden
+    Return:
+      - the number o
+    """
+    return abort(403)
