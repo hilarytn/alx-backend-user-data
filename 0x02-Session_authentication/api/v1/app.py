@@ -57,7 +57,7 @@ def before_request() -> str:
     expath = ['/api/v1/status/',
               '/api/v1/unauthorized/',
               '/api/v1/forbidden/']
-
+    setattr(request, "current_user", auth.current_user(request))
     if not (auth.require_auth(request.path, expath)):
         return
 
