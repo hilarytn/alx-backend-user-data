@@ -31,3 +31,15 @@ class SessionAuth(Auth):
                                               session_id,
                                               None)
         return sess_id
+
+    def current_user(self, request=None):
+        """ Return User based on
+            cookie value
+        """
+        cookie = self.session_cookie(request)
+        if cookie:
+            from models.user import User
+            user_id = self.user_id_for_session_id(cookie)
+            user = User.get(user_id)
+            return user
+        return None
